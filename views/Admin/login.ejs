@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha1/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+  <title>Admin Login</title>
+</head>
+
+<body style="background: linear-gradient(to right, #33ccff 0%, #ac1fe4 100%);">
+  <div class="container mt-5">
+    <div class="card" style="width: 25rem;">
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">
+          <h1 style="text-align: center;" class="mt-4 text-warning">Admin Login</h1>
+        </li>
+        <li class="list-group-item">
+          
+          <form action="/adminLogin" method="post">
+            <% if (massage.length) { %>
+              <i class="alert-danger">
+                <%= massage %>
+              </i>
+              <% } %>
+                <div class="mb-3 mt-5">
+                  <label for="exampleInputEmail1" class="form-label">Email address</label>
+                  <input type="email" name="email" class="form-control" id="exampleInputEmail1"
+                    aria-describedby="emailHelp">
+                </div>
+                <div class="mb-3">
+                  <label for="exampleInputPassword1" class="form-label">Password</label>
+                  <input type="password" name="password" class="form-control" id="exampleInputPassword1">
+                </div>
+               
+         
+
+
+        </li>
+        <li class="list-group-item"> <button type="submit" class="btn btn-primary m">Login</button></li>
+      </form>
+      </ul>
+    </div>
+   
+    
+  </div>
+
+</body>
+
+</html>

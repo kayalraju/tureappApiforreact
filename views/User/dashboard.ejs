@@ -1,0 +1,24 @@
+
+<%- include("common/head") %>
+<%- include("common/navbar") %>
+
+    <h1 style="color: blue;"> Welcome To User ashbord</h1>
+    <h3>Welcome
+        <span style="color: chartreuse;">
+            <%= data.name %>
+        </span>
+    </h3>
+
+    <h5 style="text-align: center;">Your Email Id :-
+        <span style="color: green;">
+            <%= data.email %>
+        </span>
+    </h5>
+    <h5 style="text-align: center;">Your Mobile No :-
+        <span style="color: green;">
+            <%= data.phone %>
+        </span>
+    </h5><br><br><br><br>
+
+    <a class="btn btn-info" href="logout" style="align-items: center !important;">Logout</a>
+    <%- include("common/footer") %>
