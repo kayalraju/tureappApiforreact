@@ -19,7 +19,7 @@ const comparePassword = async (password, hashPassword) => {
 const createToken = async (id) => {
 
     try {
-        const token = await jwt.sign({ _id: id }, process.env.JWT_SECRET, { expiresIn: "1h" });
+        const token = await jwt.sign({ _id: id }, "hekeekhfhalfhjksadkjsdd", { expiresIn: "1h" });
         return token;
 
     } catch (error) {
@@ -37,7 +37,7 @@ const veryfyToken = async (req, res, next) => {
         return res.status(403).send({ "status": false, "message": "A token is required for authentication" });
     }
     try {
-        const decoded = jwt.verify(token, process.env.JWT_SECRET);
+        const decoded = jwt.verify(token, "hekeekhfhalfhjksadkjsdd");
         req.user = decoded;
     } catch (err) {
         return res.status(401).send({ "status": false, "message": "invalid Token Access" });
