@@ -185,7 +185,8 @@ const forgetPassword=async(req,res)=>{
 //protected route
 const dashboard=(req,res)=>{
     return res.status(201).json({ 
-        success: true, 
+        success: true,
+        user:req.user, 
         msg: "Welcome 🙌 Your are Authenticate user"})
 }
 //get user profile after login
