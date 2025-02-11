@@ -93,7 +93,7 @@ const login = async(req, res) => {
              name:user.name,
              email:user.email,
              phone:user.phone, 
-            }, process.env.JWT_SECRET, { expiresIn: "4h" });
+            },"hekeekhfhalfhjksadkjsdd", { expiresIn: "4h" });
        return res.status(200).json({
             success: true,
             message: "login successfully",
