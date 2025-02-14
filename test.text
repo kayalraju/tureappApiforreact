@@ -1,0 +1,6 @@
+// router.post('/login',AuthApiController.login);
+// router.post('/verify-otp',AuthApiController.verifyOtp)
+// router.get('/dashboard',Auth,AuthApiController.dashboard);
+// router.post('/update/password',Auth,AuthApiController.updatePassword);
+// router.post('/reset-password-link',AuthApiController.resetPasswordLink);
+// router.post('/reset-password/:id/:token',AuthApiController.resetPassword);

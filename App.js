@@ -66,6 +66,10 @@ app.use(TestRoute)
 //***Crud Route */
 const CrudRoute=require('./Router/crudRouter')
 app.use('/api',CrudRoute)
+
+const AuthRoute=require('./Router/AuthRouter')
+app.use('/api',AuthRoute)
+
 //connect mongodb
 const port=process.env.PORT || 9000
 

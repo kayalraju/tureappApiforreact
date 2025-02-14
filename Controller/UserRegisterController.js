@@ -189,6 +189,7 @@ const dashboard=(req,res)=>{
         user:req.user, 
         msg: "Welcome 🙌 Your are Authenticate user"})
 }
+
 //get user profile after login
 const profile=async(req,res,next)=>{
     if (req.user) {
