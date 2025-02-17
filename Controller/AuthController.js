@@ -5,6 +5,7 @@ const jwt = require('jsonwebtoken');
 const bcrypt=require('bcryptjs');
 const sendEmailVerificationOTP = require('../helper/sendEmailVerificationOTP');
 const EmailVerifyModel=require('../Models/otpModel')
+const TestProduct=require('../Models/TestProductModel')
 
 class AuthApiController {
 
@@ -290,11 +291,94 @@ class AuthApiController {
 
     async createProduct(req,res){
         try{
-            
+            const { name, price, description, category} = req.body;
+            if (!name || !price || !description || !category) {
+                return res.status(400).json({
+                    status: false,
+                    message: 'All fields are required'
+                });
+            }
+            const product = await TestProduct.create({
+                name,
+                price,
+                description,
+                category,
+            });
+            return res.status(201).json({
+                status: true,
+                message: 'Product created successfully',
+                product: product
+            });
         }catch(error){
+            return res.status(400).json({
+                status: false,
+                message: error.message
+            });
 
         }
     }
 
+
+    async getProduct(req,res){
+        try{
+            const product = await TestProduct.find();
+            return res.status(200).json({
+                status: true,
+                message: 'Product fetched successfully',
+                product: product
+            });
+        }catch(error){
+            return res.status(400).json({
+                status: false,
+                message: error.message
+            });
+        }
+    }
+
+    async getProductById(req,res){
+        try{
+            const product = await TestProduct.findById(req.params.id);
+            return res.status(200).json({
+                status: true,
+                message: 'Product fetched successfully',
+                product: product
+            });
+        }catch(error){
+            return res.status(400).json({
+                status: false,
+                message: error.message
+            });
+        }
+    }
+
+    async updateProducttest(req,res){
+        try{
+            const product = await TestProduct.findByIdAndUpdate(req.params.id, req.body, {new: true});
+            return res.status(200).json({
+                status: true,
+                message: 'Product updated successfully',
+            });
+        }catch(error){
+            return res.status(400).json({
+                status: false,
+                message: error.message
+            });
+        }
+    }
+
+    async deleteProduct(req,res){
+        try{
+            const product = await TestProduct.findByIdAndDelete(req.params.id);
+            return res.status(200).json({
+                status: true,
+                message: 'Product deleted successfully',
+            });
+        }catch(error){
+            return res.status(400).json({
+                status: false,
+                message: error.message
+            });
+        }
+    }
 }
 module.exports = new AuthApiController()
