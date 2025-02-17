@@ -20,6 +20,7 @@ class AuthApiController {
             const existUser = await UserModel1.findOne({ email });
             if (existUser) {
                 return res.status(400).json({
+                    status: false,
                     message: 'User already exist'
                 });
             }
@@ -34,11 +35,13 @@ class AuthApiController {
             sendEmailVerificationOTP(req, user)
 
             return res.status(201).json({
+                status: true,
                 message: 'User created successfully and otp send to your email',
                 user: user
             });
         } catch (err) {
             return res.status(400).json({
+                status: false,
                 message: err.message,
                
             });
@@ -59,7 +62,7 @@ class AuthApiController {
 
             // Check if email doesn't exists
             if (!existingUser) {
-                return res.status(404).json({ status: "failed", message: "Email doesn't exists" });
+                return res.status(404).json({ status: false, message: "Email doesn't exists" });
             }
 
             // Check if email is already verified
@@ -95,8 +98,7 @@ class AuthApiController {
 
 
         } catch (error) {
-            console.error(error);
-            res.status(500).json({ status: false, message: "Unable to verify email, please try again later" });
+            return res.status(500).json({ status: false, message: "Unable to verify email, please try again later" });
         }
 
     }
@@ -108,6 +110,7 @@ class AuthApiController {
             UserModel1.validate(email, password)
             if (!email || !password) {
                 return res.status(400).json({
+                    status: false,
                     message: 'All fields are required'
                 });
             }
@@ -116,6 +119,7 @@ class AuthApiController {
 
             if (!user) {
                 return res.status(400).json({
+                    status: false,
                     message: 'User not found'
                 });
             }
@@ -126,6 +130,7 @@ class AuthApiController {
             const isMatch = await comparePassword(password, user.password);
             if (!isMatch) {
                 return res.status(400).json({
+                    status: false,
                     message: 'Invalid credentials'
                 });
             }
@@ -136,6 +141,7 @@ class AuthApiController {
             }, "rajukayalsecrect", { expiresIn: "2h" })
 
             res.status(200).json({
+                status: true,
                 message: 'Login successful',
                 token,
                 user: {
@@ -147,6 +153,7 @@ class AuthApiController {
 
         } catch (err) {
            return res.status(200).json({
+                status: false,
                 message: err.message,
                
             });
@@ -189,18 +196,20 @@ class AuthApiController {
                             password: newPassword
                         }
                     });
-                res.status(200).json({
+               return res.status(200).json({
                     message: 'Password updated successfully',
 
                 });
             } else {
-                res.status(400).json({
+               return res.status(400).json({
                     message: 'password not updated'
                 });
             }
 
         } catch (err) {
-            console.log(err);
+           return res.status(400).json({
+                message: err.message
+            });
         }
     }
 
@@ -217,7 +226,7 @@ class AuthApiController {
               return res.status(404).json({ status:false, message: "Email doesn't exist" });
             }
             // Generate token for password reset
-            const secret = user._id + process.env.JWT_ACCESS_TOKEN_SECRET_KEY;
+            const secret = user._id + "rajukayalsecrect";
             const token = jwt.sign({ userID: user._id }, secret, { expiresIn: '20m' });
             // Reset Link and this link generate by frontend developer
             const resetLink = `${process.env.FRONTEND_HOST}/account/reset-password-confirm/${user._id}/${token}`;
@@ -273,6 +282,18 @@ class AuthApiController {
          }catch(error){
            return res.status(500).json({ status: "failed", message: "Unable to reset password. Please try again later." });
          }
+    }
+
+
+
+    //*************************Crud Application Api's *************************** */
+
+    async createProduct(req,res){
+        try{
+            
+        }catch(error){
+
+        }
     }
 
 }
