@@ -13,7 +13,7 @@ const sendEmailVerificationOTP=async(req, user)=>{
   //const otpVerificationLink = `${process.env.FRONTEND_HOST}/account/verify-email`;
 
   await transporter.sendMail({
-    from:'avikguchhait09@gmail.com',
+    from:'sagnikduttaimps@gmail.com',
     to: user.email,
     subject: "OTP - Verify your account",
     html: `<p>Dear ${user.name},</p><p>Thank you for signing up with our website. To complete your registration, please verify your email address by entering the following one-time password (OTP)</p>
